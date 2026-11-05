@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My To-Do List</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f1f3f8;
+      text-align: center;
+      padding: 30px;
+    }
+    .container {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 400px;
+      margin: auto;
+    }
+    input {
+      padding: 10px;
+      width: 60%;
+    }
+    button {
+      padding: 10px;
+      background: #6558d3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    li {
+      text-align: left;
+      margin: 12px 0;
+    }
+    .done {
+      text-decoration: line-through;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>My To-Do List</h1>
+    <p>Organize your daily tasks!</p>
+    <input id="taskInput" placeholder="Enter a task">
+    <button onclick="addTask()">Add</button>
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    function addTask() {
+      const input = document.getElementById("taskInput");
+      const task = input.value.trim();
+
+      if (task === "") {
+        alert("Please enter a task!");
+        return;
+      }
+
+      const li = document.createElement("li");
+      const span = document.createElement("span");
+      span.textContent = task;
+
+      span.onclick = function() {
+        span.classList.toggle("done");
+      };
+
+      const del = document.createElement("button");
+      del.textContent = "Delete";
+      del.style.marginLeft = "10px";
+      del.onclick = function() {
+        li.remove();
+      };
+
+      li.appendChild(span);
+      li.appendChild(del);
+      document.getElementById("taskList").appendChild(li);
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
